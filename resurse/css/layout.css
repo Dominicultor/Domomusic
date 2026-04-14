@@ -1,0 +1,169 @@
+/* =========================
+   VARIABILE LAYOUT
+========================= */
+:root {
+    --spatiere-pagina: 60px;
+    --gap-grid: 20px;
+    --padding-zona: 18px;
+
+    --raza-colt: 15px;
+    --umbra-zona: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+
+/* =========================
+   PAGINA
+========================= */
+body {
+    padding-left: var(--spatiere-pagina);
+    padding-right: var(--spatiere-pagina);
+}
+
+
+/* =========================
+   GRID PAGINĂ
+========================= */
+.grid-pagina {
+    display: grid;
+    grid-template-areas:
+        "zona1 zona1 zona1"
+        "zona5 zona6 zona7"
+        "zona3 zona2 zona2"
+        "zona4 zona2 zona2"
+        "zona8 zona8 zona8";
+    gap: var(--gap-grid);
+    padding: 1rem 0;
+}
+
+
+/* =========================
+   ZONE PAGINĂ
+========================= */
+header,
+footer,
+.grid-pagina > section {
+    padding: var(--padding-zona);
+    border-radius: var(--raza-colt);
+}
+
+
+/* =========================
+   IZOLARE VIZUALĂ
+   background + border + radius + shadow
+========================= */
+header {
+    background-color: var(--culoare-principala);
+    color: var(--culoare-text-deschis);
+    border: 1px solid var(--culoare-border);
+    box-shadow: var(--umbra-zona);
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
+footer {
+    background-color: var(--culoare-fundal-inchis);
+    color: var(--culoare-text-deschis);
+    border: 1px solid var(--culoare-border);
+    box-shadow: var(--umbra-zona);
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
+.grid-pagina > section {
+    background-color: white;
+    border: 2px solid var(--culoare-border);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.10);
+    overflow: hidden;
+}
+
+
+/* =========================
+   MEDIA ELEMENTE
+========================= */
+img,
+iframe,
+video,
+embed,
+object {
+    width: 85%;
+    max-width: 900px;
+    min-width: 250px;
+    height: auto;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+iframe {
+    min-height: 315px;
+}
+
+embed {
+    min-height: 400px;
+}
+
+
+/* =========================
+   RESPONSIVE - MEDIU
+========================= */
+@media screen and (max-width: 1000px) {
+    :root {
+        --spatiere-pagina: 30px;
+        --gap-grid: 12px;
+        --padding-zona: 15px;
+    }
+
+    .grid-pagina {
+        grid-template-areas:
+            "zona1 zona1"
+            "zona5 zona6"
+            "zona7 zona7"
+            "zona3 zona2"
+            "zona4 zona2"
+            "zona8 zona8";
+    }
+
+    img,
+    iframe,
+    video,
+    embed,
+    object {
+        width: 92%;
+        max-width: 700px;
+        min-width: 200px;
+    }
+}
+
+
+/* =========================
+   RESPONSIVE - MIC
+========================= */
+@media screen and (max-width: 700px) {
+    :root {
+        --spatiere-pagina: 10px;
+        --gap-grid: 6px;
+        --padding-zona: 12px;
+    }
+
+    .grid-pagina {
+        grid-template-areas:
+            "zona1"
+            "zona5"
+            "zona6"
+            "zona7"
+            "zona3"
+            "zona4"
+            "zona2"
+            "zona8";
+    }
+
+    img,
+    iframe,
+    video,
+    embed,
+    object {
+        width: 100%;
+        max-width: 100%;
+        min-width: 150px;
+    }
+}

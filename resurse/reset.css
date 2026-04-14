@@ -1,0 +1,109 @@
+/* ===================== */
+/* RESET CSS */
+/* ===================== */
+
+:root {
+    --zero: 0;
+    --font-normal: 400;
+    --font-bold: 700;
+    --font-italic: italic;
+    --font-normal-style: normal;
+    --list-none: none;
+}
+
+/* reset general */
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, figure, figcaption,
+footer, header, hgroup, nav, section {
+    margin: var(--zero);
+    padding: var(--zero);
+    border: var(--zero);
+    font: inherit;
+    vertical-align: baseline;
+}
+
+/* elemente HTML5 */
+article, aside, figure, figcaption,
+footer, header, nav, section {
+    display: block;
+}
+
+/* dimensiuni permise fixe */
+html {
+    font-size: 16px;
+}
+
+body {
+    min-height: 100vh;
+    line-height: 1;
+}
+
+/* liste */
+ol, ul {
+    list-style: var(--list-none);
+}
+
+/* citate */
+blockquote, q {
+    quotes: none;
+}
+
+blockquote::before, blockquote::after,
+q::before, q::after {
+    content: "";
+}
+
+/* tabele */
+table {
+    border-collapse: collapse;
+    border-spacing: var(--zero);
+}
+
+/* bold / italic */
+strong, b {
+    font-weight: var(--font-bold);
+}
+
+em, i, cite {
+    font-style: var(--font-italic);
+}
+
+/* text normal */
+span, p {
+    font-style: var(--font-normal-style);
+    font-weight: var(--font-normal);
+}
+
+/* media */
+img, video, canvas {
+    display: block;
+    max-width: 100%;
+}
+
+/* formulare */
+input, button, textarea, select {
+    font: inherit;
+}
+
+/* linkuri */
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* sub / sup */
+sub, sup {
+    font-size: 0.75em;
+    position: relative;
+}
+
+sup { top: -0.5em; }
+sub { bottom: -0.25em; }

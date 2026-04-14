@@ -1,0 +1,583 @@
+/* ===================== */
+/* VARIABILE + BAZĂ */
+/* ===================== */
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 18px;
+    transition: font-size 0.3s ease;
+}
+
+body {
+    --culoare-principala: #3A0CA3;
+    --culoare-secundara: #7209B7;
+    --culoare-accent: #4361EE;
+    --culoare-highlight: #4CC9F0;
+    --culoare-border: #7209B7;
+    --culoare-fundal-inchis: #1B1B3A;
+
+    --culoare-text-deschis: #ffffff;
+    --culoare-text-inchis: #111111;
+    --culoare-fundal-deschis: #F8F9FF;
+
+    margin: 0;
+    background-color: var(--culoare-fundal-deschis);
+    color: var(--culoare-text-inchis);
+    font-family: 'Poppins', Arial, sans-serif;
+
+}
+
+
+/* ===================== */
+/* HEADER */
+/* ===================== */
+
+header {
+    text-align: center;
+}
+
+h1 {
+    margin: 0;
+}
+
+h2 {
+    color: var(--culoare-secundara);
+    font-size: 1.5rem;
+}
+
+h3 {
+    color: var(--culoare-accent);
+    font-size: 1.2rem;
+}
+
+p, li, a, summary, figcaption, td, th {
+    font-size: 1rem;
+}
+
+
+/* ===================== */
+/* NAV */
+/* ===================== */
+
+nav {
+    background-color: var(--culoare-fundal-inchis);
+    padding: 10px;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+nav li {
+    display: inline-block;
+    margin-right: 15px;
+}
+
+nav a {
+    color: var(--culoare-text-deschis);
+    text-decoration: none;
+    font-weight: bold;
+}
+
+nav a:hover {
+    color: var(--culoare-highlight);
+}
+
+
+/* ===================== */
+/* ZONE ID-uri GRID */
+/* ===================== */
+
+#zona1 { grid-area: zona1; }
+#zona2 { grid-area: zona2; }
+#zona3 { grid-area: zona3; }
+#zona4 { grid-area: zona4; }
+#zona5 { grid-area: zona5; }
+#zona6 { grid-area: zona6; }
+#zona7 { grid-area: zona7; }
+#zona8 { grid-area: zona8; }
+
+
+/* ===================== */
+/* LINKURI */
+/* ===================== */
+
+a {
+    color: var(--culoare-accent);
+}
+
+a:hover {
+    color: var(--culoare-highlight);
+}
+
+
+/* ===================== */
+/* TABEL */
+/* ===================== */
+
+.container-tabel {
+    width: 100%;
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    min-width: 650px;
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+caption {
+    caption-side: bottom;
+    padding-top: 0.6rem;
+    font-style: italic;
+    color: var(--culoare-secundara);
+}
+
+thead th {
+    border: 3px solid var(--culoare-border);
+    padding: 0.8rem;
+    text-align: center;
+    color: var(--culoare-principala);
+    background-color: transparent;
+}
+
+tbody td,
+tfoot td {
+    border: 1px solid var(--culoare-border);
+    padding: 0.8rem;
+    text-align: center;
+    background-color: transparent;
+
+    transition: background-color 0.75s ease, font-size 0.75s ease;
+}
+
+tbody tr,
+tfoot tr {
+    transition: background-color 0.75s ease, box-shadow 0.75s ease;
+}
+
+/* randuri alternate */
+tbody tr:nth-child(odd),
+tfoot tr:nth-child(odd) {
+    box-shadow: inset 0 0 0 9999px rgba(58, 12, 163, 0.08);
+    color: var(--culoare-principala);
+}
+
+tbody tr:nth-child(even),
+tfoot tr:nth-child(even) {
+    box-shadow: inset 0 0 0 9999px rgba(76, 201, 240, 0.10);
+    color: var(--culoare-secundara);
+}
+
+/* hover */
+tbody tr:hover,
+tfoot tr:hover {
+    box-shadow: inset 0 0 0 9999px rgba(67, 97, 238, 0.18);
+}
+
+tbody tr:hover td,
+tfoot tr:hover td {
+    font-size: 1.2em;
+}
+
+/* optional - coloane alternate (ca sa bifezi si td:nth-child) */
+tbody td:nth-child(odd),
+tfoot td:nth-child(odd) {
+    border-left-width: 2px;
+}
+
+tbody td:nth-child(even),
+tfoot td:nth-child(even) {
+    border-right-width: 2px;
+}
+
+
+/* ===================== */
+/* MEDIA ELEMENTE */
+/* ===================== */
+
+img {
+    border-radius: 10px;
+}
+
+iframe,
+embed {
+    border: none;
+}
+
+
+/* ===================== */
+/* FOOTER */
+/* ===================== */
+
+footer {
+    text-align: center;
+}
+
+
+/* ===================== */
+/* RESPONSIVE - MEDIU */
+/* ===================== */
+
+@media screen and (max-width: 1000px) {
+    html {
+        font-size: 17px;
+    }
+}
+
+
+/* ===================== */
+/* RESPONSIVE - MIC */
+/* ===================== */
+
+@media screen and (max-width: 700px) {
+    html {
+        font-size: 15px;
+    }
+
+    /* dezactivare animatii */
+    * {
+        animation: none !important;
+    }
+}
+
+
+/* ===================== */
+/* TABURI IFRAME VIDEO */
+/* ===================== */
+
+.container-taburi-iframe {
+    display: flex;
+    align-items: flex-end;
+    gap: 0;
+    margin-top: 1rem;
+}
+
+.iframe-taburi {
+    flex: 1;
+    width: 100%;
+    max-width: none;
+    min-width: 0;
+    min-height: 320px;
+    height: 320px;
+    margin: 0;
+    border: 2px solid var(--culoare-border);
+    background-color: white;
+}
+
+.taburi-video {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    min-height: 320px;
+    margin: 0;
+}
+
+.taburi-video a {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    min-width: 170px;
+    height: 56px;
+    padding: 0 1.2rem 0 1.6rem;
+
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1rem;
+
+    color: var(--culoare-accent);
+    background: linear-gradient(to bottom, #dbe7ff, #c7d7f7);
+
+    border: 2px solid var(--culoare-border);
+    margin: 0;
+
+    overflow: visible;
+    transition: background 0.4s ease, color 0.4s ease, filter 0.4s ease;
+}
+
+.taburi-video a:not(:first-child) {
+    margin-top: -2px;
+}
+
+.taburi-video a::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    width: 14px;
+    height: 100%;
+
+    background-color: var(--culoare-border);
+}
+
+.taburi-video a::after {
+    content: "";
+    position: absolute;
+    top: -2px;
+    right: -28px;
+
+    width: 28px;
+    height: 56px;
+
+    background: linear-gradient(to bottom, #dbe7ff, #c7d7f7);
+
+    border-top: 2px solid var(--culoare-border);
+    border-right: 2px solid var(--culoare-border);
+
+    border-top-right-radius: 28px;
+}
+
+.taburi-video a:hover {
+    background: linear-gradient(to bottom, #eef4ff, #d9e6ff);
+    animation: efect-blur-tab 0.45s forwards;
+}
+
+.taburi-video a:hover::after {
+    background: linear-gradient(to bottom, #eef4ff, #d9e6ff);
+}
+
+.taburi-video a:hover::before {
+    background-color: #8aa4e6;
+}
+
+@keyframes efect-blur-tab {
+    0% {
+        filter: blur(0px);
+        color: var(--culoare-accent);
+    }
+    40% {
+        filter: blur(2px);
+        color: var(--culoare-accent);
+    }
+    100% {
+        filter: blur(0px);
+        color: var(--culoare-text-deschis);
+    }
+}
+
+/* responsive pentru taburi video */
+@media screen and (max-width: 1000px) {
+    .container-taburi-iframe {
+        flex-direction: column;
+    }
+
+    .taburi-video {
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        margin-top: 0.7rem;
+        min-height: auto;
+    }
+
+    .taburi-video a {
+        border-left: 2px solid var(--culoare-border);
+        border-radius: 14px;
+        margin: 0;
+        min-width: auto;
+        flex: 1 1 30%;
+        height: 56px;
+    }
+
+    .taburi-video a:not(:first-child) {
+        margin-top: 0;
+    }
+
+    .taburi-video a::after {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 700px) {
+    .taburi-video {
+        flex-direction: column;
+        gap: 0;
+    }
+
+    .taburi-video a {
+        width: 100%;
+        flex: none;
+        transform: none;
+    }
+
+    .taburi-video a:not(:first-child) {
+        margin-top: -2px;
+    }
+
+    .taburi-video a:hover {
+        transform: none;
+    }
+
+    .taburi-video a::after {
+        display: block;
+    }
+}
+
+
+
+
+
+
+
+/* ===================== */
+/* LINK TOP */
+/* ===================== */
+
+#link-top {
+    position: fixed;
+    right: 1.5rem;
+    bottom: 1.5rem;
+    z-index: 1000;
+
+    display: block;
+    width: 70px;
+    height: 70px;
+
+    text-decoration: none;
+    opacity: 0.65;
+
+    transition: opacity 0.4s ease;
+}
+
+#link-top:hover {
+    opacity: 1;
+}
+
+#cerc-link {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+
+    background-color: #cfd9f7;
+
+    border-left: 3px solid #eef4ff;
+    border-right: 3px solid #eef4ff;
+    border-top: 3px solid #6a11cb;
+    border-bottom: 3px solid #6a11cb;
+
+    box-shadow: inset 0 0 12px rgba(58, 12, 163, 0.35);
+
+    transition: transform 0.5s ease, background-color 0.5s ease;
+}
+
+#sageata-link {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    font-size: 2rem;
+    font-weight: bold;
+    line-height: 1;
+    color: var(--culoare-principala);
+
+    filter: blur(1.5px);
+    transition: filter 0.5s ease, color 0.5s ease;
+
+    z-index: 2;
+    pointer-events: none;
+}
+
+#link-top:hover #cerc-link {
+    transform: rotate(90deg);
+    background-color: #e6eeff;
+}
+
+#link-top:hover #sageata-link {
+    filter: blur(0);
+    color: var(--culoare-secundara);
+}
+
+#tooltip-link {
+    position: absolute;
+    right: 80px;
+    bottom: 50%;
+    transform: translateY(50%);
+
+    background-color: var(--culoare-fundal-inchis);
+    color: var(--culoare-text-deschis);
+    padding: 0.45rem 0.8rem;
+    border-radius: 10px;
+    white-space: nowrap;
+    font-size: 0.9rem;
+
+    opacity: 0;
+    visibility: hidden;
+
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.18);
+    transition: opacity 0.4s ease, visibility 0.4s ease;
+}
+
+#link-top:hover #tooltip-link {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* optional: pe ecran mic il facem putin mai mic */
+@media screen and (max-width: 700px) {
+    #link-top {
+        width: 58px;
+        height: 58px;
+        right: 1rem;
+        bottom: 1rem;
+    }
+
+    #sageata-link {
+        font-size: 1.6rem;
+    }
+
+    #tooltip-link {
+        font-size: 0.8rem;
+        right: 68px;
+    }
+}
+
+
+
+
+
+/* ===================== */
+/* STILIZARE MATHML */
+/* ===================== */
+
+.formula-stilizata {
+    display: inline-block;
+    margin: 1rem 0;
+    padding: 0.6rem 1rem;
+    background-color: rgba(76, 201, 240, 0.08);
+    border-radius: 12px;
+}
+
+.formula-stilizata math {
+    font-size: 1.3rem;
+}
+
+.formula-stilizata mi {
+    color: var(--culoare-principala);
+    font-style: italic;
+    font-weight: bold;
+}
+
+.formula-stilizata mn {
+    color: var(--culoare-secundara);
+    font-weight: bold;
+}
+
+.formula-stilizata mo {
+    color: var(--culoare-accent);
+    font-size: 1.1em;
+}
+
+.formula-stilizata msup,
+.formula-stilizata msub {
+    font-size: 1.05em;
+}
