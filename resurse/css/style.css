@@ -58,35 +58,7 @@ p, li, a, summary, figcaption, td, th {
 }
 
 
-/* ===================== */
-/* NAV */
-/* ===================== */
 
-nav {
-    background-color: var(--culoare-fundal-inchis);
-    padding: 10px;
-}
-
-nav ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
-
-nav li {
-    display: inline-block;
-    margin-right: 15px;
-}
-
-nav a {
-    color: var(--culoare-text-deschis);
-    text-decoration: none;
-    font-weight: bold;
-}
-
-nav a:hover {
-    color: var(--culoare-highlight);
-}
 
 
 /* ===================== */
@@ -241,8 +213,8 @@ footer {
         font-size: 15px;
     }
 
-    /* dezactivare animatii */
-    * {
+    /* dezactivare animatii, mai putin pentru burger */
+    *:not(.burger-icon span) {
         animation: none !important;
     }
 }

@@ -1,0 +1,335 @@
+/* ===================== */
+/* MENIU PRINCIPAL - SASS */
+/* ===================== */
+
+$inaltime-meniu: 3.6rem;
+$inaltime-meniu-mediu: 3.2rem;
+$latime-burger: 3.4rem;
+$padding-link: 1.1rem;
+$padding-link-mediu: 0.8rem;
+$durata-tranzitie: 0.35s;
+$durata-burger: 0.8s;
+$delay-bara: 0.15s;
+$latime-bara-hover: 6px;
+$radius-meniu: 12px;
+
+/* PLACEHOLDERS */
+%flex-centru-inline {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+%reset-lista {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+/* STRUCTURA */
+#meniul-principal {
+    --inaltime-meniu: #{$inaltime-meniu};
+    --latime-burger: #{$latime-burger};
+    --padding-link: #{$padding-link};
+    --culoare-meniu-bg: var(--culoare-fundal-inchis);
+    --culoare-meniu-hover: var(--culoare-secundara);
+    --culoare-submeniu-bg: #241f52;
+    --culoare-submeniu-hover: #312a6a;
+    --culoare-bare-hover: linear-gradient(to bottom, #ffffff 0%, #444444 100%);
+
+    background-color: var(--culoare-meniu-bg);
+    padding: 0;
+    margin-top: 1.2rem;
+    border-radius: $radius-meniu;
+    overflow: visible;
+    position: relative;
+    z-index: 1000;
+
+    ul {
+        @extend %reset-lista;
+    }
+
+    a {
+        text-decoration: none;
+    }
+}
+
+#ch-menu {
+    display: none;
+}
+
+#label-burger {
+    display: none;
+}
+
+/* MENIU MARE */
+.meniu {
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+
+    > li {
+        position: relative;
+        flex: 1 1 0;
+
+        > a {
+            height: var(--inaltime-meniu);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.55rem;
+            padding: 0 var(--padding-link);
+
+            color: var(--culoare-text-deschis);
+            background-color: var(--culoare-meniu-bg);
+            font-weight: 600;
+            font-size: 1rem;
+
+            border-right: 1px solid rgba(255, 255, 255, 0.12);
+
+            transition: font-size $durata-tranzitie ease,
+                        background-color $durata-tranzitie ease;
+        }
+
+        &:first-child > a {
+            border-top-left-radius: $radius-meniu;
+            border-bottom-left-radius: $radius-meniu;
+        }
+
+        &:last-child > a {
+            border-top-right-radius: $radius-meniu;
+            border-bottom-right-radius: $radius-meniu;
+            border-right: none;
+        }
+
+        &:hover > a {
+            font-size: 1.15rem;
+            background-color: var(--culoare-meniu-hover);
+        }
+
+        > ul {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            min-width: 100%;
+
+            transform: scaleY(0);
+            transform-origin: top center;
+            transition: transform $durata-tranzitie ease;
+
+            z-index: 20;
+
+            > li {
+                > a {
+                    display: block;
+                    padding: 0.9rem 2.1rem;
+
+                    background-color: var(--culoare-submeniu-bg);
+                    color: var(--culoare-text-deschis);
+                    border-top: 1px solid rgba(255, 255, 255, 0.08);
+
+                    overflow: hidden;
+                    position: relative;
+
+                    &::before,
+                    &::after {
+                        content: "";
+                        position: absolute;
+                        top: 0;
+                        width: $latime-bara-hover;
+                        height: 0;
+                        background: var(--culoare-bare-hover);
+                        transition: height 0.3s ease;
+                    }
+
+                    &::before {
+                        left: 0.45rem;
+                    }
+
+                    &::after {
+                        right: 0.45rem;
+                    }
+
+                    &:hover {
+                        background-color: var(--culoare-submeniu-hover);
+                    }
+
+                    &:hover::before,
+                    &:hover::after {
+                        height: calc(100% - 0.7rem);
+                    }
+                }
+            }
+        }
+
+        &:hover > ul {
+            transform: scaleY(1);
+        }
+    }
+
+    .icon {
+        @extend %flex-centru-inline;
+        min-width: 1.2rem;
+    }
+
+    .text {
+        display: inline-block;
+        white-space: nowrap;
+    }
+}
+
+/* ECRAN MEDIU */
+@media screen and (max-width: 1000px) {
+    #meniul-principal {
+        --inaltime-meniu: #{$inaltime-meniu-mediu};
+    }
+
+    .meniu {
+        > li {
+            > a {
+                font-size: 0.9rem;
+                padding: 0 $padding-link-mediu;
+            }
+
+            &:hover > a {
+                font-size: 1rem;
+            }
+        }
+
+        .text {
+            display: none;
+        }
+
+        .icon {
+            font-size: 1.2rem;
+        }
+    }
+}
+
+/* ECRAN MIC */
+@media screen and (max-width: 700px) {
+    #meniul-principal {
+        overflow: visible;
+        position: relative;
+    }
+
+    #label-burger {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: var(--latime-burger);
+        height: var(--latime-burger);
+        margin: 0.4rem;
+        cursor: pointer;
+        color: var(--culoare-text-deschis);
+        font-size: 1.5rem;
+    }
+
+    .burger-icon {
+        position: relative;
+        width: 24px;
+        height: 18px;
+
+        span {
+            position: absolute;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background-color: var(--culoare-text-deschis);
+            opacity: 1;
+            animation: animatie-burger $durata-burger ease-in-out both;
+        }
+
+        span:nth-child(1) { top: 0; }
+        span:nth-child(2) { top: 50%; margin-top: -1.5px; }
+        span:nth-child(3) { bottom: 0; }
+
+        /* BONUS @for */
+        @for $i from 1 through 3 {
+            span:nth-child(#{$i}) {
+                animation-delay: ($i - 1) * $delay-bara;
+            }
+        }
+    }
+
+    .meniu {
+        display: block;
+        position: absolute;
+        top: calc(var(--latime-burger) + 0.8rem);
+        left: 0;
+        width: 100%;
+
+        transform: scaleX(0);
+        transform-origin: left center;
+        transition: transform $durata-tranzitie ease;
+
+        z-index: 1001;
+
+        > li {
+            width: 100%;
+
+            > a {
+                justify-content: center;
+                text-align: center;
+                border-right: none;
+                border-top: 1px solid rgba(255, 255, 255, 0.08);
+                border-radius: 0;
+                padding-left: 1rem;
+                background-color: var(--culoare-meniu-bg);
+            }
+
+            &:first-child > a .text {
+                display: none;
+            }
+
+            > ul {
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+
+                transform: scaleX(0);
+                transform-origin: left center;
+                transition: transform $durata-tranzitie ease;
+
+                > li > a {
+                    padding-left: 3rem;
+                    background-color: #2d2761;
+                }
+            }
+
+            &:hover > ul {
+                transform: scaleX(1);
+            }
+        }
+
+        .text {
+            display: inline-block;
+        }
+    }
+
+    #ch-menu:checked ~ .meniu {
+        transform: scaleX(1);
+    }
+}
+
+/* ANIMATIE BURGER */
+@keyframes animatie-burger {
+    0% {
+        background-color: var(--culoare-highlight);
+        transform: translateX(-20px) scaleX(0.3) rotate(-15deg);
+        opacity: 0;
+    }
+
+    50% {
+        background-color: var(--culoare-accent);
+        transform: translateX(10px) scaleX(1.2) rotate(10deg);
+        opacity: 0.5;
+    }
+
+    100% {
+        background-color: var(--culoare-text-deschis);
+        transform: translateX(0) scaleX(1) rotate(0deg);
+        opacity: 1;
+    }
+}

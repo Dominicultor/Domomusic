@@ -17,7 +17,9 @@
 
 <link rel="stylesheet" href="resurse/css/reset.css">
 <link rel="stylesheet" href="./resurse/css/style.css">
+<link rel="stylesheet" href="./resurse/css/meniu.css">
 <link rel="stylesheet" href="resurse/css/layout.css">
+<link rel="stylesheet" href="./resurse/css/print.css" media="print">
 
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
@@ -42,20 +44,61 @@
     <p>Instrumente muzicale, albume și viniluri pentru pasionații de muzică</p>
 </hgroup>
 
-<nav>
-    <ul>
+<nav id="meniul-principal">
+    <label id="label-burger" for="ch-menu">
+    <div class="burger-icon">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+</label>
+    <input type="checkbox" id="ch-menu">
+
+    <ul class="meniu">
         <li>
-            <a href="index.html">Acasă</a>
+            <a href="index.html">
+                <span class="icon"><i class="fa-solid fa-house"></i></span>
+                <span class="text">Acasă</span>
+            </a>
             <ul>
                 <li><a href="#despre">Despre DomoMusic</a></li>
                 <li><a href="#instrumente">Instrumente muzicale</a></li>
                 <li><a href="#albume">Albume și viniluri</a></li>
+                <li><a href="#video">Videoclipuri</a></li>
             </ul>
         </li>
 
-        <li><a href="produse.html">Produse</a></li>
-        <li><a href="oferte.html">Oferte</a></li>
-        <li><a href="contact.html">Contact</a></li>
+        <li>
+            <a href="produse.html">
+                <span class="icon"><i class="fa-solid fa-compact-disc"></i></span>
+                <span class="text">Produse</span>
+            </a>
+        </li>
+
+        <li>
+            <a href="oferte.html">
+                <span class="icon"><i class="fa-solid fa-tags"></i></span>
+                <span class="text">Oferte</span>
+            </a>
+        </li>
+
+        <li>
+            <a href="#">
+                <span class="icon"><i class="fa-solid fa-images"></i></span>
+                <span class="text">Galerii</span>
+            </a>
+            <ul>
+                <li><a href="galerie-statica.html">Galerie statică</a></li>
+                <li><a href="galerie-animata.html">Galerie dinamică</a></li>
+            </ul>
+        </li>
+
+        <li>
+            <a href="contact.html">
+                <span class="icon"><i class="fa-solid fa-envelope"></i></span>
+                <span class="text">Contact</span>
+            </a>
+        </li>
     </ul>
 </nav>
 
@@ -482,6 +525,10 @@
     <span id="sageata-link">&#8593;</span>
     <span id="tooltip-link">Mergi la începutul paginii</span>
 </a>
+
+
+<p id="banner-print">Acesta este un proiect școlar!</p>
+
 
     <small>
         &copy; 2026 DomoMusic. Creat la data de 

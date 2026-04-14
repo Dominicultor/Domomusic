@@ -1,0 +1,148 @@
+/* ===================== */
+/* PRINT CSS */
+/* ===================== */
+
+html {
+    font-size: 18px;
+}
+
+body {
+    background: white !important;
+    color: black !important;
+}
+
+/* banner sus pe prima pagina */
+#banner-print {
+    display: block;
+    position: absolute;
+    top: 1cm;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%;
+    text-align: center;
+    border: 2px dotted black;
+    padding: 0.4rem;
+    font-weight: bold;
+    color: black !important;
+    background: white !important;
+}
+
+/* ascundem media si elementele dependente */
+img,
+video,
+iframe,
+embed,
+object,
+picture,
+figure,
+figcaption,
+#harta-imagine,
+#catalog-pdf,
+#video,
+#link-top,
+#meniul-principal,
+nav {
+    display: none !important;
+}
+
+/* gridul devine block */
+.grid-pagina {
+    display: block !important;
+}
+
+.grid-pagina > section {
+    display: block !important;
+    break-inside: avoid;
+    page-break-inside: avoid;
+    margin-bottom: 1rem;
+}
+
+/* linkurile devin text normal */
+a,
+a:visited,
+a:hover,
+a:active {
+    color: black !important;
+    text-decoration: none !important;
+}
+
+/* prima pagina cu headingul principal */
+header {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    break-after: page;
+    page-break-after: always;
+
+    background: white !important;
+    color: black !important;
+    border: none !important;
+    box-shadow: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    text-align: center;
+}
+
+/* ascunde tot din header in afara de hgroup */
+header > *:not(hgroup) {
+    display: none !important;
+}
+
+/* ascundem subtitlul, ramane doar h1 */
+hgroup p {
+    display: none !important;
+}
+
+h1 {
+    font-size: 2.5em;
+    text-decoration: underline;
+    color: black !important;
+    margin: 0;
+}
+
+/* page break inainte de footer */
+footer {
+    break-before: page;
+    page-break-before: always;
+
+    background: white !important;
+    color: black !important;
+    border: none !important;
+    box-shadow: none !important;
+}
+
+/* watermark */
+body::after {
+    content: "Mihailescu Dominic";
+    position: fixed;
+    bottom: 1cm;
+    right: 1cm;
+    width: 100px;
+    height: 2cm;
+    border: 3px double black;
+    opacity: 0.65;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-size: 0.8rem;
+    background: white;
+    transform: rotate(-20deg);
+}
+
+/* margini pagini stanga/dreapta */
+@page :left {
+    margin-left: 2.5cm;
+    margin-right: 0.5cm;
+    margin-top: 1.5cm;
+    margin-bottom: 1.5cm;
+}
+
+@page :right {
+    margin-left: 0.5cm;
+    margin-right: 2.5cm;
+    margin-top: 1.5cm;
+    margin-bottom: 1.5cm;
+}
