@@ -158,7 +158,7 @@ tfoot tr:hover td {
     font-size: 1.2em;
 }
 
-/* optional - coloane alternate (ca sa bifezi si td:nth-child) */
+/* optional - coloane alternate */
 tbody td:nth-child(odd),
 tfoot td:nth-child(odd) {
     border-left-width: 2px;
@@ -552,4 +552,86 @@ footer {
 .formula-stilizata msup,
 .formula-stilizata msub {
     font-size: 1.05em;
+}
+
+
+
+.video-vtt {
+    width: 80%;
+    min-width: 280px;
+    max-width: 800px;
+    display: block;
+    margin: 1rem auto;
+    border-radius: 15px;
+    box-shadow: var(--umbra-zona);
+}
+
+.video-vtt::cue {
+    background: linear-gradient(
+        90deg,
+        var(--culoare-fundal-inchis),
+        var(--culoare-principala)
+    );
+    color: transparent;
+    -webkit-background-clip: text;
+    background-clip: text;
+    font-size: 1rem;
+    font-weight: bold;
+}
+
+
+
+
+
+
+:root {
+    --culoare-link-vizitat: var(--culoare-secundara);
+    --culoare-link-extern: var(--culoare-principala);
+    --culoare-link-extern-hover: var(--culoare-highlight);
+    --culoare-pata-link: rgba(76, 201, 240, 0.35);
+}
+
+/* linkuri vizitate */
+main a:visited {
+    color: var(--culoare-link-vizitat);
+}
+
+/* linkuri externe */
+main a[href^="http"]::before {
+    content: "⮳";
+    font-size: 1.5em;
+    margin-right: 0.25em;
+    color: var(--culoare-link-extern);
+    transition: color 0.3s ease;
+}
+
+main a[href^="http"]:hover::before {
+    color: var(--culoare-link-extern-hover);
+}
+
+/* efect pata radială pe linkurile din conținut */
+main a {
+    background-image: radial-gradient(
+        circle,
+        var(--culoare-pata-link) 0%,
+        var(--culoare-pata-link) 40%,
+        transparent 80%,
+        transparent 100%
+    );
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 0 0;
+    transition: background-size 0.4s ease;
+    padding: 0.1em 0.2em;
+}
+
+main a:hover {
+    background-size: 100% 100%;
+}
+
+/* border la click */
+main a:active {
+    outline: 2px solid var(--culoare-accent);
+    outline-offset: 3px;
+    border-radius: 4px;
 }

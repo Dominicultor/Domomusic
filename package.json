@@ -1,0 +1,20 @@
+{
+  "name": "domomusic",
+  "version": "1.0.0",
+  "description": "Magazin online de muzica",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "muzica",
+    "instrumente",
+    "magazin"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "ejs": "^5.0.2",
+    "express": "^5.2.1"
+  }
+}
