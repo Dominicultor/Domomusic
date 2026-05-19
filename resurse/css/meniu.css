@@ -192,9 +192,6 @@
   .burger-icon span:nth-child(3) {
     bottom: 0;
   }
-  .burger-icon {
-    /* BONUS @for */
-  }
   .burger-icon span:nth-child(1) {
     animation-delay: 0s;
   }
@@ -271,5 +268,3 @@
     opacity: 1;
   }
 }
-
-/*# sourceMappingURL=meniu.css.map */

@@ -1,0 +1,105 @@
+{
+  "cale_galerie": "/resurse/imagini/galerie",
+  "imagini": [
+    {
+      "cale_imagine": "chitara1.jpg",
+      "titlu": "Chitară electrică",
+      "descriere": "Solo live pe scenă",
+      "timp": "08:00-12:00",
+      "alt": "Chitară electrică pe scenă",
+      "licenta": "CC0"
+    },
+
+    {
+      "cale_imagine": "chitara2.jpg",
+      "titlu": "Vinyl retro",
+      "descriere": "Colecție de discuri",
+      "timp": "10:00-16:00",
+      "alt": "Discuri vinyl retro",
+      "licenta": "CC0"
+    },
+
+    {
+      "cale_imagine": "chitara3.jpg",
+      "titlu": "Studio setup",
+      "descriere": "Înregistrare în studio",
+      "timp": "09:00-18:00",
+      "alt": "Studio muzical modern",
+      "licenta": "CC0"
+    },
+
+    {
+      "cale_imagine": "chitara4.jpg",
+      "titlu": "Concert lights",
+      "descriere": "Lumini de concert",
+      "timp": "12:00-20:00",
+      "alt": "Lumini pe scenă",
+      "licenta": "CC-BY",
+      "autor": "Mick Haupt",
+      "sursa": "Unsplash"
+    },
+
+    {
+      "cale_imagine": "chitara5.jpg",
+      "titlu": "Microfon vintage",
+      "descriere": "Microfon clasic de studio",
+      "timp": "07:00-13:00",
+      "alt": "Microfon vintage",
+      "licenta": "CC0"
+    },
+
+    {
+      "cale_imagine": "chitara6.jpg",
+      "titlu": "Bass groove",
+      "descriere": "Chitară bass live",
+      "timp": "13:00-19:00",
+      "alt": "Bass electric",
+      "licenta": "CC0"
+    },
+
+    {
+      "cale_imagine": "chitara7.jpg",
+      "titlu": "Pedalboard",
+      "descriere": "Pedale pentru efecte",
+      "timp": "15:00-22:00",
+      "alt": "Pedalboard pentru chitară",
+      "licenta": "CC0"
+    },
+
+    {
+      "cale_imagine": "chitara8.jpg",
+      "titlu": "Acoustic vibe",
+      "descriere": "Chitară acustică",
+      "timp": "06:00-11:00",
+      "alt": "Chitară acustică",
+      "licenta": "CC0"
+    },
+
+    {
+      "cale_imagine": "chitara9.jpg",
+      "titlu": "Mixing desk",
+      "descriere": "Mixer audio profesional",
+      "timp": "11:00-17:00",
+      "alt": "Mixer profesional",
+      "licenta": "CC0"
+    },
+
+    {
+      "cale_imagine": "chitara10.jpg",
+      "titlu": "Live crowd",
+      "descriere": "Public la concert",
+      "timp": "18:00-23:00",
+      "alt": "Mulțime la concert",
+      "licenta": "CC0"
+    },
+
+    {
+      "cale_imagine": "chitara11.jpg",
+      "titlu": "Headphones",
+      "descriere": "Căști de studio",
+      "timp": "00:00-23:59",
+      "alt": "Căști profesionale",
+      "licenta": "CC0"
+    }
+  ]
+}

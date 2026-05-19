@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <%- include("../fragmente/head") %>
+    <link rel="stylesheet" href="/resurse/css/galerie-animata.css">
+    <title>Galerie animată</title>
+</head>
+
+<body>
+    <%- include("../fragmente/header") %>
+
+    <main>
+        <h1>Galerie animată</h1>
+
+        <section id="galerie-animata">
+            <% for (let img of galerie.imagini) { %>
+                <figure>
+                    <img 
+                        src="<%= galerie.cale_galerie %>/mari/<%= img.cale_imagine %>" 
+                        alt="<%= img.titlu %>"
+                    >
+                    <figcaption><%= img.titlu %></figcaption>
+                </figure>
+            <% } %>
+        </section>
+    </main>
+
+    <%- include("../fragmente/footer") %>
+</body>
+</html>
