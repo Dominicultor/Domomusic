@@ -33,19 +33,34 @@
             </ul>
         </li>
 
-        <li>
-            <a href="/produse">
-                <span class="icon"><i class="fa-solid fa-compact-disc"></i></span>
-                <span class="text">Produse</span>
-            </a>
-        </li>
+       <li>
+    <a href="/produse">
+        <span class="icon"><i class="fa-solid fa-compact-disc"></i></span>
+        <span class="text">Produse</span>
+    </a>
 
-        <li>
-            <a href="/oferte">
-                <span class="icon"><i class="fa-solid fa-tags"></i></span>
-                <span class="text">Oferte</span>
-            </a>
-        </li>
+    <ul>
+        <li><a href="/produse">Toate</a></li>
+
+        <% if (typeof categorii !== "undefined") { %>
+            <% for (let categ of categorii) { %>
+                <li>
+                    <a href="/produse?categorie=<%= categ.categorie %>">
+    <%= categ.categorie %>
+</a>
+                    </a>
+                </li>
+            <% } %>
+        <% } %>
+    </ul>
+</li>
+
+<li>
+    <a href="/oferte">
+        <span class="icon"><i class="fa-solid fa-tags"></i></span>
+        <span class="text">Oferte</span>
+    </a>
+</li>
 
         <li>
             <a href="#">
@@ -66,5 +81,21 @@
         </li>
     </ul>
 </nav>
+
+
+
+<div id="container-tema">
+
+    <label for="select-tema">
+        <i class="fa-solid fa-palette"></i>
+    </label>
+
+    <select id="select-tema">
+        <option value="light">Light</option>
+        <option value="dark">Dark</option>
+        <option value="neon">Neon</option>
+    </select>
+
+</div>
 
 </header>

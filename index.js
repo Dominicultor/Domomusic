@@ -5,6 +5,10 @@ const sharp = require("sharp");
 const sass = require("sass");
 
 
+//etapa 6
+const { Client } = require("pg");
+
+
 //20
 let vect_foldere = ["temp", "logs", "backup", "fisiere_uploadate"];
 
@@ -26,6 +30,27 @@ const PORT = 8080;
 var obGlobal = {
     obErori: null
 };
+
+
+//Etapa 6
+const client = new Client({
+    user: "postgres",
+    password: "postgres",
+    host: "localhost",
+    port: 5433,
+    database: "domomusic"
+});
+
+client.connect();
+
+client.query("SELECT NOW()", (err, rezultat) => {
+    if (err) {
+        console.log(err);
+    } else {
+        console.log("Conectat PostgreSQL");
+        console.log(rezultat.rows);
+    }
+});
 
 
 
@@ -500,6 +525,25 @@ app.use("/resurse", (req, res, next) => {
 
 app.use("/resurse", express.static(path.join(__dirname, "resurse")));
 
+
+//Etapa 6
+app.use(async (req, res, next) => {
+    try {
+        let rezultatCategorii = await client.query(`
+            SELECT unnest(enum_range(NULL::categ_mare)) AS categorie
+        `);
+
+        res.locals.categorii = rezultatCategorii.rows.map(row => row.categorie);
+    } catch (err) {
+        console.log("Eroare la citirea categoriilor:", err);
+        res.locals.categorii = [];
+    }
+
+    next();
+});
+
+
+
 app.use((req, res, next) => {
     if (req.path.endsWith(".ejs")) {
         afisareEroare(res, 400);
@@ -550,6 +594,111 @@ app.get("/galerie-animata", async (req, res) => {
     res.render("galerie-animata", {
         galerie: galerie
     });
+});
+
+
+
+
+
+
+
+//etapa 6
+// RUTA PRODUSE
+app.get("/produse", async (req, res) => {
+    let conditie = "";
+    let valori = [];
+
+    if (req.query.categorie) {
+        conditie = "WHERE categorie = $1";
+        valori.push(req.query.categorie);
+    }
+
+    try {
+        let rezultatProduse = await client.query(
+            `SELECT * FROM produse ${conditie} ORDER BY id`,
+            valori
+        );
+
+        let rezultatPret = await client.query(`
+            SELECT MIN(pret) AS pret_minim, MAX(pret) AS pret_maxim
+            FROM produse
+        `);
+
+        let rezultatPutere = await client.query(`
+            SELECT MIN(putere_wati) AS putere_minima, MAX(putere_wati) AS putere_maxima
+            FROM produse
+        `);
+
+        let rezultatCategorii = await client.query(`
+            SELECT DISTINCT categorie
+            FROM produse
+            ORDER BY categorie
+        `);
+
+        let rezultatTipuri = await client.query(`
+            SELECT DISTINCT tip
+            FROM produse
+            ORDER BY tip
+        `);
+
+        let rezultatCulori = await client.query(`
+            SELECT DISTINCT culoare
+            FROM produse
+            ORDER BY culoare
+        `);
+
+        res.render("produse", {
+            produse: rezultatProduse.rows,
+            pret: rezultatPret.rows[0],
+            putere: rezultatPutere.rows[0],
+            categorii: rezultatCategorii.rows,
+            tipuri: rezultatTipuri.rows,
+            culori: rezultatCulori.rows
+        });
+
+    } catch (err) {
+        console.log(err);
+        afisareEroare(res);
+    }
+});
+
+
+
+
+
+// RUTA PRODUS UNIC
+app.get("/produs/:id", async (req, res) => {
+    try {
+        let rezultat = await client.query(
+            "SELECT * FROM produse WHERE id = $1",
+            [req.params.id]
+        );
+
+        if (rezultat.rows.length == 0) {
+            afisareEroare(res, 404);
+            return;
+        }
+
+        let produs = rezultat.rows[0];
+
+        let rezultatSimilare = await client.query(
+            `SELECT id, nume, imagine, pret, categorie, tip
+             FROM produse
+             WHERE categorie = $1 AND id <> $2
+             ORDER BY pret
+             LIMIT 3`,
+            [produs.categorie, produs.id]
+        );
+
+        res.render("produs", {
+            produs: produs,
+            produseSimilare: rezultatSimilare.rows
+        });
+
+    } catch (err) {
+        console.log(err);
+        afisareEroare(res);
+    }
 });
 
 

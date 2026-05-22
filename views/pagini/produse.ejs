@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="ro">
+
+<%- include("../fragmente/head") %>
+
+<body>
+<%- include("../fragmente/header") %>
+
+<main>
+    <h2>Produse DomoMusic</h2>
+    <section id="filtre">
+
+    <label>
+        Nume produs:
+        <input type="text" id="inp-nume">
+    </label>
+
+
+
+    <label>
+        Preț maxim:
+<span><%= pret.pret_minim %></span><input 
+    type="range"
+    id="inp-pret"
+    min="<%= pret.pret_minim %>"
+    max="<%= pret.pret_maxim %>"
+    value="<%= pret.pret_maxim %>"
+>
+<span><%= pret.pret_maxim %></span>    
+
+<span id="infoPret"><%= pret.pret_maxim %></span>
+    </label>
+
+
+
+    <label>
+        Culoare:
+        <input list="lista-culori" id="inp-culoare">
+<datalist id="lista-culori">
+    <% for(let c of culori){ %>
+        <option value="<%= c.culoare %>">
+    <% } %>
+</datalist>
+    </label>
+
+    <fieldset>
+        <legend>Categorie</legend>
+
+        <label>
+            <input type="radio" name="gr_categ" value="toate" checked>
+            Toate
+        </label>
+
+        <% for(let categ of categorii){ %>
+            <label>
+                <input type="radio" name="gr_categ" value="<%= categ.categorie %>">
+<%= categ.categorie %>
+            </label>
+        <% } %>
+    </fieldset>
+
+
+    
+    <label>
+        Tip produs:
+        <select id="inp-tip">
+<% for(let t of tipuri){ %>
+    <option value="<%= t.tip %>">
+        <%= t.tip %>
+    </option>
+<% } %>
+        </select>
+    </label>
+
+<fieldset id="filtru-caracteristici">
+    <legend>Caracteristici</legend>
+
+    <% ["usb", "wireless", "bluetooth"].forEach(function(caract) { %>
+        <div class="linie-caracteristica">
+            <label>
+                <input type="checkbox" class="chk-caract" value="<%= caract %>">
+                <%= caract %>
+            </label>
+
+            <label>
+                <input type="radio" name="radio-<%= caract %>" value="are" checked>
+                are
+            </label>
+
+            <label>
+                <input type="radio" name="radio-<%= caract %>" value="nu-are">
+                nu are
+            </label>
+        </div>
+    <% }) %>
+</fieldset>
+
+    <label>
+        Descriere:
+        <textarea id="inp-descriere"></textarea>
+    </label>
+
+    <label>
+        În stoc:
+        <input type="checkbox" id="inp-stoc">
+    </label>
+
+    <div class="butoane-filtre">
+        <button id="btn-filtrare">Filtrează</button>
+        <button id="sortCresc">Sortare crescătoare</button>
+        <button id="sortDescresc">Sortare descrescătoare</button>
+        <button id="btn-calcul">Calculează suma</button>
+        <button id="resetare">Resetare</button>
+    </div>
+
+</section>
+
+    <section id="produse">
+        <% for (let prod of produse) { %>
+            <article 
+    id="artc-<%= prod.id %>" 
+    class="produs <%= prod.categorie %>"
+    data-id="<%= prod.id %>"
+    data-nume="<%= prod.nume.toLowerCase() %>"
+    data-pret="<%= prod.pret %>"
+    data-putere="<%= prod.putere_wati %>"
+    data-categorie="<%= prod.categorie %>"
+    data-tip="<%= prod.tip %>"
+    data-culoare="<%= prod.culoare %>"
+    data-caracteristici="<%= prod.caracteristici %>"
+    data-descriere="<%= prod.descriere.toLowerCase() %>"
+    data-stoc="<%= prod.disponibil_stoc %>"
+>
+                <h3>
+    <a href="/produs/<%= prod.id %>"><%= prod.nume %></a>
+               </h3>
+               <p class="badge-ieftin" style="display:none;">
+              Cel mai ieftin din categoria sa
+              </p>
+
+
+
+              <p class="badge-nou" style="display:none;">
+               NOU
+              </p>
+
+                <div class="continut-produs">
+                    <div class="coloana-imagine">
+                        <img src="<%= prod.imagine %>" alt="<%= prod.nume %>">
+
+                        <ul>
+                            <li><b>Preț:</b> <span class="pret"><%= prod.pret %></span> lei</li>
+                            <li><b>Putere:</b> <%= prod.putere_wati %> W</li>
+                            <li><b>Culoare:</b> <%= prod.culoare %></li>
+                            <li><b>Caracteristici:</b> <%= prod.caracteristici %></li>
+                            <li>
+    <b>Data adăugării:</b>
+
+    <%
+        let partiData = prod.data_adaugare.toLocaleDateString("ro-RO", {
+            day: "numeric",
+            month: "long",
+            year: "numeric",
+            weekday: "long"
+        }).split(", ");
+    %>
+
+    <time datetime="<%= prod.data_adaugare.toISOString().split('T')[0] %>">
+        <%= partiData[1] %> [<%= partiData[0] %>]
+    </time>
+</li>
+                            <li><b>Disponibil în stoc:</b> <%= prod.disponibil_stoc ? "Da" : "Nu" %></li>
+                        </ul>
+                    </div>
+
+                    <div class="coloana-info">
+                        <p><b>Categorie:</b> <%= prod.categorie %></p>
+                        <p><b>Tip:</b> <%= prod.tip %></p>
+                        <p><%= prod.descriere %></p>
+                    </div>
+                </div>
+            </article>
+        <% } %>
+    </section>
+
+
+
+    
+<div id="paginare-produse"></div>
+
+
+
+
+<div id="modal-produs" class="modal-ascuns">
+    <div id="continut-modal">
+        <button id="inchide-modal">X</button>
+
+        <h2 id="modal-nume"></h2>
+        <img id="modal-imagine" src="" alt="Imagine produs">
+
+        <p><b>Preț:</b> <span id="modal-pret"></span> lei</p>
+        <p><b>Categorie:</b> <span id="modal-categorie"></span></p>
+        <p><b>Tip:</b> <span id="modal-tip"></span></p>
+        <p><b>Culoare:</b> <span id="modal-culoare"></span></p>
+        <p><b>Descriere:</b> <span id="modal-descriere"></span></p>
+    </div>
+</div>
+
+    
+</main>
+
+<%- include("../fragmente/footer") %>
+<script src="/resurse/js/produse.js"></script>
+</body>
+</html>

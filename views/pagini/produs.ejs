@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ro">
+
+<%- include("../fragmente/head") %>
+
+<body>
+<%- include("../fragmente/header") %>
+
+<main>
+    <article id="produs-unic" class="<%= produs.categorie %>">
+        <h2><%= produs.nume %></h2>
+
+        <img src="<%= produs.imagine %>" alt="<%= produs.nume %>">
+
+        <p><b>Descriere:</b> <%= produs.descriere %></p>
+        <p><b>Categorie:</b> <%= produs.categorie %></p>
+        <p><b>Tip:</b> <%= produs.tip %></p>
+        <p><b>Preț:</b> <%= produs.pret %> lei</p>
+        <p><b>Putere:</b> <%= produs.putere_wati %> W</p>
+        <p><b>Culoare:</b> <%= produs.culoare %></p>
+        <p><b>Caracteristici:</b> <%= produs.caracteristici %></p>
+
+<p>
+    <b>Data adăugării:</b>
+
+    <%
+        let partiData = produs.data_adaugare.toLocaleDateString("ro-RO", {
+            day: "numeric",
+            month: "long",
+            year: "numeric",
+            weekday: "long"
+        }).split(", ");
+    %>
+
+    <time datetime="<%= produs.data_adaugare.toISOString().split('T')[0] %>">
+        <%= partiData[1] %> [<%= partiData[0] %>]
+    </time>
+</p>
+
+        <p><b>Disponibil în stoc:</b> <%= produs.disponibil_stoc ? "Da" : "Nu" %></p>
+
+        <p>
+            <a href="/produse">Înapoi la produse</a>
+        </p>
+    </article>
+</main>
+
+
+
+<section id="produse-similare">
+    <h2>Produse similare</h2>
+
+    <% if (produseSimilare.length > 0) { %>
+
+        <div class="grid-produse-similare">
+            <% for (let ps of produseSimilare) { %>
+
+                <article class="produs-similar">
+                    <a href="/produs/<%= ps.id %>">
+                        <img src="<%= ps.imagine %>" alt="<%= ps.nume %>">
+                    </a>
+
+                    <h3>
+                        <a href="/produs/<%= ps.id %>">
+                            <%= ps.nume %>
+                        </a>
+                    </h3>
+
+                    <p><b>Preț:</b> <%= ps.pret %> lei</p>
+                    <p><b>Categorie:</b> <%= ps.categorie %></p>
+                    <p><b>Tip:</b> <%= ps.tip %></p>
+                </article>
+
+            <% } %>
+        </div>
+
+    <% } else { %>
+
+        <p>Nu există produse similare pentru acest produs.</p>
+
+    <% } %>
+</section>
+
+
+<%- include("../fragmente/footer") %>
+</body>
+</html>
